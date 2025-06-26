@@ -1,7 +1,9 @@
+import 'package:blog_app/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:blog_app/core/private/app_private.dart';
 import 'package:blog_app/features/auth/data/datasource/auth_remote_datasource.dart';
 import 'package:blog_app/features/auth/data/repositories/auth_repositroy_impl.dart';
 import 'package:blog_app/features/auth/domain/repository/auth_repository.dart';
+import 'package:blog_app/features/auth/domain/usecases/current_user.dart';
 import 'package:blog_app/features/auth/domain/usecases/user_sign_in.dart';
 import 'package:blog_app/features/auth/domain/usecases/user_sign_up.dart';
 import 'package:blog_app/features/auth/presestation/bloc/auth_bloc.dart';
@@ -20,18 +22,25 @@ Future<void> initDependencies() async {
 }
 
 void _initAuth() {
-  serviceLocator.registerFactory<AuthRemoteDatasource>(
-    () => AuthRemoteDatasourceImpl(serviceLocator()),
-  );
-
-  serviceLocator.registerFactory<Authrepository>(
-    () => AuthRepositroyImpl(serviceLocator()),
-  );
-
-  serviceLocator.registerFactory(() => UserSignUp(serviceLocator()));
-
-  serviceLocator.registerLazySingleton(
-    () => AuthBloc(userSignUp: serviceLocator(), userSignIn: serviceLocator()),
-  );
-  serviceLocator.registerFactory(() => UserSignIn(serviceLocator()));
+ //core
+  serviceLocator.registerLazySingleton(() => AppUserCubit());
+ //auth
+  serviceLocator
+    ..registerFactory<AuthRemoteDatasource>(
+      () => AuthRemoteDatasourceImpl(serviceLocator()),
+    )
+    ..registerFactory<Authrepository>(
+      () => AuthRepositroyImpl(serviceLocator()),
+    )
+    ..registerFactory(() => UserSignUp(serviceLocator()))
+    ..registerLazySingleton(
+      () => AuthBloc(
+        userSignUp: serviceLocator(),
+        userSignIn: serviceLocator(),
+        currentUser: serviceLocator(),
+        appUserCubit: serviceLocator(),
+      ),
+    )
+    ..registerFactory(() => UserSignIn(serviceLocator()))
+    ..registerFactory(() => CurrentUser(serviceLocator()));
 }
