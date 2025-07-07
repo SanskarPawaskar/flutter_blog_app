@@ -1,4 +1,4 @@
-# blog_app
+# Blog App
 
 A blog App made using futter framework with BLOC for state management, supabase database and auth along with hive for local storage.
 This project is made with reference to: https://www.youtube.com/watch?v=ELFORM9fmss&ab_channel=RivaanRanawat
@@ -11,3 +11,7 @@ This project is made with reference to: https://www.youtube.com/watch?v=ELFORM9f
 ![WhatsApp Image 2025-07-07 at 2 13 39 PM (3)](https://github.com/user-attachments/assets/d5b09318-0139-446b-80d9-dd3fb5ff32c0)
 ![WhatsApp Image 2025-07-07 at 2 13 38 PM](https://github.com/user-attachments/assets/fee53e8a-1c57-42ae-a9a0-475a70a07f4a)
 
+## Database visualizer
+
+
+<img width="759" alt="Screenshot 2025-07-07 at 6 31 19 PM" src="https://github.com/user-attachments/assets/77d3f518-4278-4b79-a0eb-faafe4f72729" />
