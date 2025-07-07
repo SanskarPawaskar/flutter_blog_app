@@ -9,20 +9,21 @@ class BlogModel extends Blog {
     required super.url,
     required super.topics,
     required super.updatedAt,
+    super.posterName,
   });
 
+  @override
   Map<String, dynamic> toJson() {
-    return {
+    return <String, dynamic>{
       'id': id,
       'poster_id': posterId,
       'title': title,
       'content': content,
       'image_url': url,
-      'topic': topics,
+      'topics': topics,
       'updated_at': updatedAt.toIso8601String(),
     };
   }
-
   factory BlogModel.fromJson(Map<String, dynamic> map) {
     return BlogModel(
       id: map['id'],
@@ -44,6 +45,7 @@ class BlogModel extends Blog {
     String? url,
     List<String>? topics,
     DateTime? updatedAt,
+    String? posterName,
   }) {
     return BlogModel(
       id: id ?? this.id,
@@ -53,6 +55,7 @@ class BlogModel extends Blog {
       url: url ?? this.url,
       topics: topics ?? this.topics,
       updatedAt: updatedAt ?? this.updatedAt,
+      posterName: posterName ?? this.posterName,
     );
   }
 }
